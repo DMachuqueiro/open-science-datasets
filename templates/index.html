@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Science Datasets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <h1>Open Science Datasets</h1>
+        <p>Descoberta de datasets científicos para inteligência artificial.</p>
+
+        <form action="{{ url_for('index') }}" method="get" role="search">
+            <label for="query">Pesquisar datasets</label>
+            <div class="search-controls">
+                <input type="search" id="query" name="q" value="{{ query }}"
+                       placeholder="Introduz palavras-chave" required>
+                <button type="submit">Pesquisar</button>
+            </div>
+        </form>
+
+        <p class="notice">A pesquisa em OpenAIRE, Zenodo e re3data está prevista para uma próxima etapa.</p>
+        {% if query %}
+        <p role="status">Termo recebido: <strong>{{ query }}</strong>. Ainda não são realizadas pesquisas nos repositórios.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
