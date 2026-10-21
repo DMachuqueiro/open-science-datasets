@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" compressed="false">
+  <diagram id="casos-de-uso" name="Casos de uso">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sistema" value="Open Science Datasets" style="rounded=0;whiteSpace=wrap;html=0;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;align=center;spacingTop=15;fontSize=20;fontStyle=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="310" y="30" width="430" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf01" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf02" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf02">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf03" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf04" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf05" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf05">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf06" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf06">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf07" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf07">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="associacao-rf08" style="edgeStyle=none;html=0;rounded=0;startArrow=none;endArrow=none;strokeColor=#000000;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="utilizador" target="rf08">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="utilizador" value="Utilizador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=0;outlineConnect=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="100" y="420" width="50" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="rf01" value="pesquisar datasets" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="70" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf02" value="consultar metadados" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="175" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf03" value="filtrar resultados" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="280" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf04" value="selecionar datasets" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="385" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf05" value="comparar datasets" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="490" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf06" value="relacionar datasets" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="595" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf07" value="preparar dados para IA" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="700" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rf08" value="exportar resultados" style="ellipse;whiteSpace=wrap;html=0;fontSize=16;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="sistema">
+          <mxGeometry x="80" y="805" width="270" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
