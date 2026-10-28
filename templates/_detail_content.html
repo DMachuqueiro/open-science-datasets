@@ -1,0 +1,77 @@
+{% macro value(text) -%}
+    {% if text is none %}Não disponibilizado pela fonte.{% elif text == '' %}Campo vazio na fonte.{% else %}{{ text }}{% endif %}
+{%- endmacro %}
+        {% if error %}
+        <h1>Não foi possível apresentar o dataset</h1>
+        <p role="alert">{{ error }}</p>
+        {% else %}
+        <h1>{{ dataset.title or 'Título não disponível.' }}</h1>
+        <dl>
+            <dt>Repositório de origem</dt><dd>{{ value(dataset.source) }}</dd>
+            <dt>Identificador do registo</dt><dd>{{ value(dataset.identifier) }}</dd>
+            <dt>Registo original no Zenodo</dt>
+            <dd>{% if dataset.url %}<a href="{{ dataset.url }}" aria-label="Link para o registo original no Zenodo: {{ dataset.title or dataset.identifier or 'dataset' }}">Link</a>{% else %}Não disponibilizado pela fonte.{% endif %}</dd>
+            <dt>DOI</dt><dd>{% if dataset.doi_url %}<a href="{{ dataset.doi_url }}">{{ dataset.doi or dataset.doi_url }}</a>{% else %}{{ value(dataset.doi) }}{% endif %}</dd>
+            <dt>Data de publicação</dt><dd>{{ value(dataset.publication_date) }}</dd>
+            <dt>Última atualização</dt><dd>{{ value(dataset.updated) }}</dd>
+            <dt>Licença</dt>
+            <dd>{% if dataset.license %}
+                {% if dataset.license.url %}<a href="{{ dataset.license.url }}">{{ dataset.license.name or dataset.license.identifier or dataset.license.url }}</a>
+                {% else %}{{ value(dataset.license.name or dataset.license.identifier) }}{% endif %}
+                {% else %}Não disponibilizada pela fonte.{% endif %}
+            </dd>
+            <dt>Tipo de acesso indicado pela fonte</dt><dd>{{ value(dataset.access_right) }}</dd>
+            <dt>Condições de acesso</dt><dd>{{ value(dataset.access_conditions) }}</dd>
+            <dt>Fim do embargo</dt><dd>{{ value(dataset.embargo_date) }}</dd>
+        </dl>
+
+        <section aria-labelledby="description-heading">
+            <h2 id="description-heading">Descrição completa</h2>
+            <p>{{ value(dataset.description) }}</p>
+        </section>
+        <section aria-labelledby="authors-heading">
+            <h2 id="authors-heading">Autores</h2>
+            {% if dataset.authors %}<ul>
+                {% for author in dataset.authors %}<li>{% if author.url %}<a href="{{ author.url }}">{{ author.name or author.orcid or author.url }}</a>{% else %}{{ value(author.name) }}{% endif %}
+                    {% if author.affiliation is not none %} — Afiliação: {{ value(author.affiliation) }}{% endif %}
+                    {% if author.orcid is not none %} — ORCID: {{ value(author.orcid) }}{% endif %}
+                </li>{% endfor %}
+            </ul>{% elif dataset.authors is none %}<p>Autores não disponibilizados pela fonte.</p>
+            {% else %}<p>Nenhum autor indicado pela fonte.</p>{% endif %}
+        </section>
+        <section aria-labelledby="keywords-heading">
+            <h2 id="keywords-heading">Palavras-chave</h2>
+            {% if dataset.keywords %}<ul>{% for keyword in dataset.keywords %}<li>{{ value(keyword) }}</li>{% endfor %}</ul>
+            {% elif dataset.keywords is none %}<p>Palavras-chave não disponibilizadas pela fonte.</p>
+            {% else %}<p>Nenhuma palavra-chave indicada pela fonte.</p>{% endif %}
+        </section>
+        <section aria-labelledby="files-heading">
+            <h2 id="files-heading">Ficheiros e formatos</h2>
+            {% if dataset.files %}<ul>
+                {% for file in dataset.files %}<li>
+                    {% if file.url %}<a href="{{ file.url }}">{{ file.name or 'Abrir ficheiro na fonte' }}</a>
+                    {% else %}{{ value(file.name) }} — Ligação não disponibilizada pela fonte.{% endif %}
+                    <dl>
+                        <dt>Formato indicado pela fonte</dt><dd>{{ value(file.format) }}</dd>
+                        <dt>Tamanho em bytes</dt><dd>{{ value(file.size) }}</dd>
+                    </dl>
+                </li>{% endfor %}
+            </ul>{% elif dataset.files is none %}<p>Ficheiros não disponibilizados pela fonte.</p>
+            {% else %}<p>Nenhum ficheiro listado pela fonte.</p>{% endif %}
+            <p>A disponibilidade dos ficheiros depende das condições de acesso do repositório.</p>
+        </section>
+        <section aria-labelledby="related-heading">
+            <h2 id="related-heading">Recursos e identificadores associados</h2>
+            {% if dataset.related_resources %}<ul>
+                {% for resource in dataset.related_resources %}<li>
+                    {% if resource.url %}<a href="{{ resource.url }}">{{ resource.identifier or resource.url }}</a>
+                    {% else %}{{ value(resource.identifier) }}{% endif %}
+                    <dl>
+                        <dt>Relação indicada pela fonte</dt><dd>{{ value(resource.relation) }}</dd>
+                        <dt>Tipo de recurso</dt><dd>{{ value(resource.resource_type) }}</dd>
+                    </dl>
+                </li>{% endfor %}
+            </ul>{% elif dataset.related_resources is none %}<p>Recursos associados não disponibilizados pela fonte.</p>
+            {% else %}<p>Nenhum recurso associado indicado pela fonte.</p>{% endif %}
+        </section>
+        {% endif %}

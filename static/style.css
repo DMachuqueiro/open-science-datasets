@@ -69,7 +69,8 @@ button:hover {
 }
 
 input:focus-visible,
-button:focus-visible {
+button:focus-visible,
+a:focus-visible {
     outline: 3px solid #2563eb;
     outline-offset: 3px;
 }
@@ -77,4 +78,49 @@ button:focus-visible {
 .notice {
     margin-top: 1.5rem;
     color: #475569;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+article {
+    margin-top: 1.5rem;
+}
+
+dt {
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+
+dd {
+    margin-left: 0;
+}
+
+dialog {
+    width: min(52rem, calc(100% - 2rem));
+    max-height: calc(100dvh - 2rem);
+    padding: 2rem;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    overflow-wrap: anywhere;
+}
+
+dialog::backdrop {
+    background: rgb(15 23 42 / 65%);
+}
+
+body:has(dialog[open]) {
+    overflow: hidden;
+}
+
+.dialog-controls {
+    display: flex;
+    justify-content: flex-end;
 }

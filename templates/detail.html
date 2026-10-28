@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ dataset.title if dataset and dataset.title else 'Detalhe do dataset' }} — Open Science Datasets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <p><a href="{{ url_for('index', q=query, page=page) if query else url_for('index') }}">{{ 'Voltar à pesquisa — página ' ~ page if query else 'Pesquisar datasets' }}</a></p>
+        {% include "_detail_content.html" %}
+    </main>
+</body>
+</html>
