@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Science Datasets</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='detail.js') }}" defer></script>
 </head>
 <body>
     <main>
@@ -20,10 +21,51 @@
             </div>
         </form>
 
-        <p class="notice">A pesquisa em OpenAIRE, Zenodo e re3data está prevista para uma próxima etapa.</p>
-        {% if query %}
-        <p role="status">Termo recebido: <strong>{{ query }}</strong>. Ainda não são realizadas pesquisas nos repositórios.</p>
+        <p class="notice">Pesquisa no Zenodo, com até 20 datasets por página.</p>
+        {% if error %}
+        <p role="alert">{{ error }}</p>
+        {% elif query %}
+        <section aria-labelledby="results-heading">
+            <h2 id="results-heading">Resultados para “{{ query }}”</h2>
+            <p role="status">Página {{ search.page }} — {{ search.results|length }} datasets apresentados.
+                {% if search.total is not none %}
+                {% if not search.total_is_exact %}Pelo menos {% endif %}{{ search.total }} resultados indicados pelo Zenodo.
+                {% endif %}
+            </p>
+            {% if search.results %}
+            {% for dataset in search.results %}
+            <article>
+                <h3>{% if dataset.identifier %}<a data-dataset-detail aria-haspopup="dialog" aria-controls="dataset-dialog" href="{{ url_for('dataset_detail', identifier=dataset.identifier, q=query, page=search.page) }}">{{ dataset.title or 'Título não disponível.' }}</a>{% else %}{{ dataset.title or 'Título não disponível.' }}{% endif %}</h3>
+                <p>{{ dataset.short_description or 'Descrição não disponível.' }}</p>
+            </article>
+            {% endfor %}
+            {% else %}
+            {% if search.page > 1 %}
+            <p role="status">Não existem resultados nesta página.</p>
+            <p><a href="{{ url_for('index', q=query, page=1) }}">Voltar à primeira página da pesquisa</a></p>
+            {% else %}
+            <p role="status">Não foram encontrados datasets para esta pesquisa.</p>
+            {% endif %}
+            {% endif %}
+            <nav class="pagination" aria-label="Páginas dos resultados">
+                {% if search.previous_page %}
+                <a rel="prev" href="{{ url_for('index', q=query, page=search.previous_page) }}">Anterior — página {{ search.previous_page }}</a>
+                {% endif %}
+                <span aria-current="page">Página {{ search.page }}</span>
+                {% if search.next_page %}
+                <a rel="next" href="{{ url_for('index', q=query, page=search.next_page) }}">Seguinte — página {{ search.next_page }}</a>
+                {% endif %}
+            </nav>
+        </section>
+        {% elif request.args.get('q') is not none %}
+        <p role="status">Introduz palavras-chave para pesquisar datasets no Zenodo.</p>
         {% endif %}
     </main>
+    <dialog id="dataset-dialog" aria-label="Detalhes do dataset">
+        <div class="dialog-controls">
+            <button type="button" id="close-dataset-dialog" autofocus>Fechar</button>
+        </div>
+        <div id="dataset-dialog-content" aria-live="polite"></div>
+    </dialog>
 </body>
 </html>
